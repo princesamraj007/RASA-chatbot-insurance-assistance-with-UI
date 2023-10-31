@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name="description" content="Welcome to the most extraordinary hotel in Boston Massachusetts">
+  <meta name="keywords" content="hotel,boston hotel,new england hotel">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <title>AtoZ Insurance Chatbot| Welcome</title>
+</head>
+<body>
+  
+  <script>
+    // Function to process user voice input
+    function processVoiceInput() {
+        // Use a speech recognition API to get user's voice input
+        const recognition = new webkitSpeechRecognition();
+        recognition.lang = "en-US"; // Set the language to English or any other supported language
+        recognition.onresult = function (event) {
+            const voiceInput = event.results[0][0].transcript;
+            // Call the Rasa chatbot with the voice input
+            window.WebChat.send("/user_uttered " + voiceInput);
+        };
+        recognition.start();
+    }
+
+    function clearChatHistory() {
+        var chatContainer = document.querySelector(".rw-messages-container");
+        chatContainer.innerHTML = ""; // Clear the chat messages
+    }
+
+    window.addEventListener("load", function () {
+        let e = document.createElement("script"),
+            t = document.head || document.getElementsByTagName("head")[0];
+        (e.src = "https://cdn.jsdelivr.net/npm/rasa-webchat@1.x.x/lib/index.js"),
+            // Replace 2.5.0 with the version that you want
+
+            (e.async = true),
+            (e.onload = () => {
+                window.WebChat.default(
+                    {
+                        initPayload: '/greet',
+                        customData: { language: "en" },
+                        socketUrl: "http://localhost:5005",
+                        title: "Rasa_Bot",
+                        subtitle: "Say HI and get started!!!",
+                    },
+                    null
+                );
+
+                // Clear chat history after a short delay (500ms)
+                setTimeout(clearChatHistory, 500);
+            });
+        t.insertBefore(e, t.firstChild);
+
+        // Listen for a voice input button click
+        const voiceInputButton = document.getElementById("voiceInputButton");
+        voiceInputButton.addEventListener("click", processVoiceInput);
+    });
+  </script>
+  <button id="voiceInputButton">Click to Speak</button>
+  <header>
+    <nav id="navbar">
+      <div class="container">
+        <h1 class="logo"><a href="index.html">AtoZ Insurance Chatbot</a></h1>
+        <ul>
+          <li><a class="current" href="index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="https://www.google.co.in/maps/place/Le+Bernardin/@21.8607603,-34.7220681,3z/data=!4m9!1m2!2m1!1srestaurants+in+new+york!3m5!1s0x89c258f890972255:0x1dc6c517addd0556!8m2!3d40.7615241!4d-73.9817376!15sChdyZXN0YXVyYW50cyBpbiBuZXcgeW9ya1omCgtyZXN0YXVyYW50cyIXcmVzdGF1cmFudHMgaW4gbmV3IHlvcmuSARJzZWFmb29kX3Jlc3RhdXJhbnQ">Location</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <div id="showcase">
+      <div class="container">
+        <div class="showcase-content">
+          <h1><span class="text-primary">HealthCare</span>Insurance Policies 
+          <p class="lead">Find your best and suitable policy</p>
+          <a class="btn" href="about.html">About Our Chatbot</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <section id="home-info" class="bg-dark">
+    <div class="info-img"></div>
+    <div class="info-content">
+      <h2><span class="text-primary">ANYBODY CAN </span> — INSURE POLICIES.</h2>
+      <p>
+        <br>
+        Hello, we’re AtoZ Chatbot Insurance, your new premium policy service. We know you’re always busy. No time for to worry about money. So let us take care of that, we’re really good at it, we promise!
+        <br>
+      </p>
+      <a href="about.html" class="btn btn-light">Read More</a>
+    </div>
+  </section>
+
+  <section id="features">
+    <div class="box bg-light">
+      <i class='fas fa-file-alt' style='font-size:36px'></i>
+      <h3>Policy Plans</h3>
+      <p class="text">Explore the available policies </p>
+      <a href="fun.html" class="button" >More</a>
+    </div>
+    <div class="box bg-primary">
+      <i class="fa fa-address-book" style="font-size:36px"></i>
+        <h3>Enrollment System</h3>
+        <p>Easy and simple way to apply for a policy</p>
+        <a href="food.html" class="button">More</a>
+    </div>
+    <div class="box bg-light">
+      <i class='far fa-hand-point-up' style='font-size:36px'></i>
+        <h3>Recommendation system</h3>
+        <p>The chatbot recommends you the best policy with a suitable premium </p>
+        <a href="gym.html" class="button">More</a>
+       
+    </div>
+  </section>
+
+  <div class="clr"></div>
+
+  <footer id="main-footer">
+    <p>AtoZ Insurance Chatbot, All Rights Reserved</p>
+  </footer>
+  <style>
+    .rw-conversation-container .rw-header { background-color: rgb(27, 168, 168); }
+    .rw-conversation-container .rw-messages-container .rw-message .rw-client { background-color: rgb(27, 168, 168); }
+    .rw-launcher { background-color: rgb(27, 168, 168); }
+</style>
+
+</body>
+</html>
+
