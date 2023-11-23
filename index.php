@@ -1,3 +1,10 @@
+<?php
+        // Access the variable from the URL parameter
+        if (isset($_GET['variable'])) {
+            $variable = urldecode($_GET['variable']);
+        }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,12 +18,37 @@
   <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
   <title>AtoZ Insurance Chatbot| Welcome</title>
+  <style>
+        *{padding:0;margin:0;}
+
+        body{
+            font-family:Verdana, Geneva, sans-serif;
+            font-size:18px;
+            background-color:#CCC;
+        }
+
+        .float{
+            position:fixed;
+            width:60px;
+            height:60px;
+            bottom:40px;
+            left:40px;
+            background-color:rgb(255, 191, 0);  
+            color:#FFF;
+            border-radius:50px;
+            text-align:center;
+            box-shadow: 2px 2px 3px #999;
+        }
+
+        .my-float{
+            margin-top:22px;
+        }
+    </style>
 </head>
 <body>
   
-  <script>
-    // Function to process user voice input
-    function processVoiceInput() {
+<script>
+     function processVoiceInput() {
         // Use a speech recognition API to get user's voice input
         const recognition = new webkitSpeechRecognition();
         recognition.lang = "en-US"; // Set the language to English or any other supported language
@@ -37,14 +69,14 @@
         let e = document.createElement("script"),
             t = document.head || document.getElementsByTagName("head")[0];
         (e.src = "https://cdn.jsdelivr.net/npm/rasa-webchat@1.x.x/lib/index.js"),
-            // Replace 2.5.0 with the version that you want
+            
 
             (e.async = true),
             (e.onload = () => {
                 window.WebChat.default(
                     {
                         initPayload: '/greet',
-                        customData: { language: "en" },
+                        customData: { language: "en", displayHtml: true },
                         socketUrl: "http://localhost:5005",
                         title: "Rasa_Bot",
                         subtitle: "Say HI and get started!!!",
@@ -62,14 +94,18 @@
         voiceInputButton.addEventListener("click", processVoiceInput);
     });
   </script>
-  <button id="voiceInputButton">Click to Speak</button>
   <header>
     <nav id="navbar">
-      <div class="container">
-        <h1 class="logo"><a href="index.html">AtoZ Insurance Chatbot</a></h1>
+        <div class="container">
+        <h1 class="logo">
+        <?php
+            echo "Welcome " . $variable;
+        ?>
+        </h>
+        <h1 class="logo"><a href="index.html"> ...   AtoZ Insurance Chatbot</a></h1>
         <ul>
           <li><a class="current" href="index.html">Home</a></li>
-          <li><a href="about.html">About</a></li>
+          
           <li><a href="contact.html">Contact</a></li>
           <li><a href="https://www.google.co.in/maps/search/lic/@13.1491653,80.1866664,13.5z?entry=ttu">Location</a></li>
         </ul>
@@ -81,7 +117,7 @@
         <div class="showcase-content">
           <h1><span class="text-primary">HealthCare</span>Insurance Policies 
           <p class="lead">Find your best and suitable policy</p>
-          <a class="btn" href="about.html">About Our Chatbot</a>
+          
         </div>
       </div>
     </div>
@@ -96,40 +132,40 @@
         Hello, we’re AtoZ Chatbot Insurance, your new premium policy service. We know you’re always busy. No time for to worry about money. So let us take care of that, we’re really good at it, we promise!
         <br>
       </p>
-      <a href="about.html" class="btn btn-light">Read More</a>
+      
     </div>
   </section>
 
-  <section id="features">
+    <section id="features">
     <div class="box bg-light">
       <i class='fas fa-file-alt' style='font-size:36px'></i>
       <h3>Policy Plans</h3>
       <p class="text">Explore the available policies </p>
-      <a href="fun.html" class="button" >More</a>
+      
     </div>
     <div class="box bg-primary">
       <i class="fa fa-address-book" style="font-size:36px"></i>
         <h3>Enrollment System</h3>
         <p>Easy and simple way to apply for a policy</p>
-        <a href="food.html" class="button">More</a>
+        
     </div>
     <div class="box bg-light">
       <i class='far fa-hand-point-up' style='font-size:36px'></i>
         <h3>Recommendation system</h3>
         <p>The chatbot recommends you the best policy with a suitable premium </p>
-        <a href="gym.html" class="button">More</a>
+        
        
     </div>
-  </section>
-  <div>
-    <?php print $username; ?>
-  </div>
-
+    </section>
+    <a href="voice.html" class="float" >
+    <i style="padding-top: 13px; font-size: 36px; " class="fa fa-microphone" ></i>
+    </a>
   <div class="clr"></div>
 
   <footer id="main-footer">
     <p>AtoZ Insurance Chatbot, All Rights Reserved</p>
   </footer>
+
   <style>
     .rw-conversation-container .rw-header { background-color: rgb(27, 168, 168); }
     .rw-conversation-container .rw-messages-container .rw-message .rw-client { background-color: rgb(27, 168, 168); }
